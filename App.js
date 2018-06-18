@@ -1,7 +1,7 @@
 import React from 'react';
 import MovieList from './components/MovieList';
 import movieDbHelper from './helpers/movieDbHelper';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, StatusBar, View } from 'react-native';
 
 export default class App extends React.Component {
   constructor() {
@@ -51,6 +51,7 @@ export default class App extends React.Component {
     const { currentTab, movieData } = this.state;
     return (
       <View style={styles.container}>
+        <StatusBar />
         <MovieList movies={movieData[currentTab]} />
       </View>
     );
@@ -63,6 +64,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
-    margin: '10%',
+    marginTop: StatusBar.currentHeight,
   },
 });
