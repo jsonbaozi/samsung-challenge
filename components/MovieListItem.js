@@ -1,20 +1,32 @@
 import React from 'react';
-import { StyleSheet, View, Image, Text } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Image,
+  Text,
+  TouchableNativeFeedback,
+} from 'react-native';
 
-const MovieListItem = ({ movieDetails }) => (
-  <View style={styles.movieListItem}>
-    <Image
-      style={styles.moviePoster}
-      source={{
-        uri: `http://image.tmdb.org/t/p/w92${movieDetails.poster_path}`,
-      }}
-    />
-    <View style={styles.movieDetails}>
-      <Text style={styles.movieTitle}>{movieDetails.title}</Text>
-      <Text>Rating: {movieDetails.vote_avg}/10 </Text>
-      <Text>Popularity: {Math.round(movieDetails.popularity)}</Text>
+const MovieListItem = ({ movieDetails, navigation }) => (
+  <TouchableNativeFeedback
+    onPress={() =>
+      navigation.navigate('Details', { movieDetails: movieDetails })
+    }
+  >
+    <View style={styles.movieListItem}>
+      <Image
+        style={styles.moviePoster}
+        source={{
+          uri: `http://image.tmdb.org/t/p/w92${movieDetails.poster_path}`,
+        }}
+      />
+      <View style={styles.movieDetails}>
+        <Text style={styles.movieTitle}>{movieDetails.title}</Text>
+        <Text>Rating: {movieDetails.vote_avg}/10 </Text>
+        <Text>Popularity: {Math.round(movieDetails.popularity)}</Text>
+      </View>
     </View>
-  </View>
+  </TouchableNativeFeedback>
 );
 
 const styles = StyleSheet.create({

@@ -1,4 +1,3 @@
-import React from 'react';
 import NowPlaying from './NowPlaying';
 import Upcoming from './Upcoming';
 import { createMaterialTopTabNavigator } from 'react-navigation';

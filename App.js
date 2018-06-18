@@ -1,5 +1,6 @@
 import React from 'react';
 import TabNavigator from './components/TabNavigator';
+import StackNavigator from './components/StackNavigator';
 import movieDbHelper from './helpers/movieDbHelper';
 
 export default class App extends React.Component {
@@ -37,7 +38,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    return <TabNavigator screenProps={{ state: this.state }} />;
+    return <StackNavigator screenProps={{ state: this.state }} />;
   }
 }
 
