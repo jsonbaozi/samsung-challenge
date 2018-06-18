@@ -23,6 +23,33 @@ const getUpcoming = function() {
   });
 };
 
+let genreMap;
+const getGenreMap = function() {
+  if (genreMap !== undefined) {
+    return genreMap;
+  } else {
+    axios({
+      method: 'get',
+      url: `${API_URL}/genre/movie/list`,
+      params: {
+        api_key: API_KEY,
+      },
+    })
+      .then(response => {
+        let tempMap = {};
+        response.data.genres.forEach(genre => {
+          tempMap[genre.id] = genre.name;
+        });
+        genreMap = tempMap;
+      })
+      .catch(err => {
+        console.log("Couldn't get genres");
+      });
+  }
+  return false;
+};
+getGenreMap();
+
 const parseApiResponse = function(response) {
   return response.data.results.map(movie => ({
     key: String(movie.id),
@@ -39,4 +66,5 @@ module.exports = {
   getNowPlaying: getNowPlaying,
   getUpcoming: getUpcoming,
   parseApiResponse: parseApiResponse,
+  getGenreMap: getGenreMap,
 };

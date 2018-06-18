@@ -1,4 +1,5 @@
 import React from 'react';
+import { DB_IMG_URL } from '../helpers/config';
 import {
   StyleSheet,
   View,
@@ -17,7 +18,7 @@ const MovieListItem = ({ movieDetails, navigation }) => (
       <Image
         style={styles.moviePoster}
         source={{
-          uri: `http://image.tmdb.org/t/p/w92${movieDetails.poster_path}`,
+          uri: `${DB_IMG_URL}/w92${movieDetails.poster_path}`,
         }}
       />
       <View style={styles.movieDetails}>
