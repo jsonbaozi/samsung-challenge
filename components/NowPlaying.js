@@ -3,7 +3,7 @@ import MovieList from './MovieList';
 
 const NowPlaying = ({ screenProps }) => (
   <MovieList
-    movies={screenProps.movieData.nowPlaying.sort(
+    movies={screenProps.state.nowPlaying.sort(
       (a, b) => b.popularity - a.popularity
     )}
   />

@@ -3,7 +3,7 @@ import MovieList from './MovieList';
 
 const Upcoming = ({ screenProps }) => (
   <MovieList
-    movies={screenProps.movieData.upcoming.sort(
+    movies={screenProps.state.upcoming.sort(
       (a, b) => Date.parse(a.release_date) - Date.parse(b.release_date)
     )}
   />

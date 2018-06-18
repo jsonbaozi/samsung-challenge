@@ -10,8 +10,8 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      currentTab: 'nowPlaying',
-      movieData: { nowPlaying: [], upcoming: [] },
+      nowPlaying: [],
+      upcoming: [],
     };
   }
 
@@ -24,11 +24,7 @@ export default class App extends React.Component {
       .getNowPlaying()
       .then(response => {
         const nowPlaying = movieDbHelper.parseApiResponse(response);
-        const movieData = this.state.movieData;
-        movieData.nowPlaying = nowPlaying;
-        this.setState({
-          movieData: movieData,
-        });
+        this.setState({ nowPlaying });
       })
       .catch(err => {
         throw err;
@@ -37,11 +33,7 @@ export default class App extends React.Component {
       .getUpcoming()
       .then(response => {
         const upcoming = movieDbHelper.parseApiResponse(response);
-        const movieData = this.state.movieData;
-        movieData.upcoming = upcoming;
-        this.setState({
-          movieData: movieData,
-        });
+        this.setState({ upcoming });
       })
       .catch(err => {
         throw err;
@@ -49,8 +41,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { currentTab, movieData } = this.state;
-    return <TabNavigator screenProps={{ movieData }} />;
+    return <TabNavigator screenProps={{ state: this.state }} />;
   }
 }
 
