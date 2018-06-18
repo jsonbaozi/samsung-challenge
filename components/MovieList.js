@@ -1,15 +1,12 @@
 import React from 'react';
-import { StyleSheet, FlatList, Text } from 'react-native';
+import MovieListItem from './MovieListItem';
+import { StyleSheet, FlatList } from 'react-native';
 
 const MovieList = ({ movies }) => (
   <FlatList
     style={styles.movieList}
     data={movies}
-    renderItem={({ item }) => (
-      <Text>
-        {item.title} {item.popularity}
-      </Text>
-    )}
+    renderItem={({ item }) => <MovieListItem movieDetails={item} />}
   />
 );
 

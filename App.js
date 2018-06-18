@@ -7,7 +7,8 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      movies: [],
+      currentTab: 'nowPlaying',
+      movieData: { nowPlaying: [], upcoming: [] },
     };
   }
 
@@ -15,17 +16,30 @@ export default class App extends React.Component {
     movieDbHelper
       .getNowPlaying()
       .then(response => {
-        const movies = response.data.results
-          .map(movie => ({
-            key: String(movie.id),
-            title: movie.title,
-            popularity: movie.popularity,
-            genres: movie.genre_ids,
-            poster_path: movie.poster_path,
-          }))
+        const nowPlaying = movieDbHelper
+          .parseApiResponse(response)
           .sort((a, b) => b.popularity - a.popularity);
+        const movieData = this.state.movieData;
+        movieData.nowPlaying = nowPlaying;
         this.setState({
-          movies: movies,
+          movieData: movieData,
+        });
+      })
+      .catch(err => {
+        throw err;
+      });
+    movieDbHelper
+      .getUpcoming()
+      .then(response => {
+        const upcoming = movieDbHelper
+          .parseApiResponse(response)
+          .sort(
+            (a, b) => Date.parse(a.release_date) - Date.parse(b.release_date)
+          );
+        const movieData = this.state.movieData;
+        movieData.upcoming = upcoming;
+        this.setState({
+          movieData: movieData,
         });
       })
       .catch(err => {
@@ -34,10 +48,10 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { movies } = this.state;
+    const { currentTab, movieData } = this.state;
     return (
       <View style={styles.container}>
-        <MovieList movies={movies} />
+        <MovieList movies={movieData[currentTab]} />
       </View>
     );
   }
