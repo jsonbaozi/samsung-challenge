@@ -15,7 +15,6 @@ export default class MovieDetails extends React.Component {
     const { navigation } = this.props;
     const movieDetails = navigation.getParam('movieDetails', {});
     const genreMap = getGenreMap();
-    console.log(movieDetails.poster_path);
     return (
       <View style={styles.movieDetails}>
         <Image
@@ -47,6 +46,7 @@ const styles = StyleSheet.create({
   movieDetails: {
     flex: 1,
     marginTop: StatusBar.currentHeight,
+    backgroundColor: '#E0E0E0',
   },
   moviePosterLarge: {
     width: Dimensions.get('screen').width,
