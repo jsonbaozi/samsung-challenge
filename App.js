@@ -1,5 +1,4 @@
 import React from 'react';
-import TabNavigator from './components/TabNavigator';
 import StackNavigator from './components/StackNavigator';
 import movieDbHelper from './helpers/movieDbHelper';
 
@@ -41,13 +40,3 @@ export default class App extends React.Component {
     return <StackNavigator screenProps={{ state: this.state }} />;
   }
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'flex-start',
-//     justifyContent: 'flex-start',
-//     marginTop: StatusBar.currentHeight,
-//   },
-// });
