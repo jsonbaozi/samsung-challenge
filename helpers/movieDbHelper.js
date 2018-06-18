@@ -28,6 +28,7 @@ const parseApiResponse = function(response) {
     key: String(movie.id),
     title: movie.title,
     popularity: movie.popularity,
+    vote_avg: movie.vote_average,
     genres: movie.genre_ids,
     poster_path: movie.poster_path,
     release_date: movie.release_date,

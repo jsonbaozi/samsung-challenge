@@ -10,8 +10,9 @@ const MovieListItem = ({ movieDetails }) => (
       }}
     />
     <View style={styles.movieDetails}>
-      <Text>{movieDetails.title}</Text>
-      <Text>{movieDetails.popularity}</Text>
+      <Text style={styles.movieTitle}>{movieDetails.title}</Text>
+      <Text>Rating: {movieDetails.vote_avg}/10 </Text>
+      <Text>Popularity: {Math.round(movieDetails.popularity)}</Text>
     </View>
   </View>
 );
@@ -21,6 +22,11 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
+    height: 150,
+    backgroundColor: '#E0E0E0',
+    borderWidth: 0.2,
+    borderColor: '#212121',
   },
   moviePoster: {
     width: 92,
@@ -28,7 +34,12 @@ const styles = StyleSheet.create({
   },
   movieDetails: {
     flex: 1,
-    alignItems: 'center',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    paddingLeft: '5%',
+  },
+  movieTitle: {
+    fontSize: 17,
   },
 });
 
