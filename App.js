@@ -1,6 +1,9 @@
 import React from 'react';
-import MovieList from './components/MovieList';
+// import NowPlaying from './components/NowPlaying';
+// import Upcoming from './components/Upcoming';
+import TabNavigator from './components/TabNavigator';
 import movieDbHelper from './helpers/movieDbHelper';
+// import { createMaterialTopNavigator } from 'react-navigation';
 import { StyleSheet, StatusBar, View } from 'react-native';
 
 export default class App extends React.Component {
@@ -13,12 +16,14 @@ export default class App extends React.Component {
   }
 
   componentWillMount() {
+    this.fetchFromApi();
+  }
+
+  fetchFromApi() {
     movieDbHelper
       .getNowPlaying()
       .then(response => {
-        const nowPlaying = movieDbHelper
-          .parseApiResponse(response)
-          .sort((a, b) => b.popularity - a.popularity);
+        const nowPlaying = movieDbHelper.parseApiResponse(response);
         const movieData = this.state.movieData;
         movieData.nowPlaying = nowPlaying;
         this.setState({
@@ -31,11 +36,7 @@ export default class App extends React.Component {
     movieDbHelper
       .getUpcoming()
       .then(response => {
-        const upcoming = movieDbHelper
-          .parseApiResponse(response)
-          .sort(
-            (a, b) => Date.parse(a.release_date) - Date.parse(b.release_date)
-          );
+        const upcoming = movieDbHelper.parseApiResponse(response);
         const movieData = this.state.movieData;
         movieData.upcoming = upcoming;
         this.setState({
@@ -49,12 +50,7 @@ export default class App extends React.Component {
 
   render() {
     const { currentTab, movieData } = this.state;
-    return (
-      <View style={styles.container}>
-        <StatusBar />
-        <MovieList movies={movieData[currentTab]} />
-      </View>
-    );
+    return <TabNavigator screenProps={{ movieData }} />;
   }
 }
 
