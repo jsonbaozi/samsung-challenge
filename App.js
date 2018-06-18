@@ -1,10 +1,6 @@
 import React from 'react';
-// import NowPlaying from './components/NowPlaying';
-// import Upcoming from './components/Upcoming';
 import TabNavigator from './components/TabNavigator';
 import movieDbHelper from './helpers/movieDbHelper';
-// import { createMaterialTopNavigator } from 'react-navigation';
-import { StyleSheet, StatusBar, View } from 'react-native';
 
 export default class App extends React.Component {
   constructor() {
@@ -45,12 +41,12 @@ export default class App extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-    marginTop: StatusBar.currentHeight,
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#fff',
+//     alignItems: 'flex-start',
+//     justifyContent: 'flex-start',
+//     marginTop: StatusBar.currentHeight,
+//   },
+// });

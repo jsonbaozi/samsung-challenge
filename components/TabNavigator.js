@@ -2,7 +2,7 @@ import React from 'react';
 import NowPlaying from './NowPlaying';
 import Upcoming from './Upcoming';
 import { createMaterialTopTabNavigator } from 'react-navigation';
-import { StyleSheet, StatusBar } from 'react-native';
+import { StatusBar } from 'react-native';
 
 const styles = {
   tabNavigator: {
